@@ -26,11 +26,12 @@ components:
         - name: NODE_ENV
           value: production
         - name: THREESCALE_WILDCARD_DOMAIN
-          value: local.localdomain 
+          value: local.localdomain
         - name: OPENSHIFT_VERSION
-          value: "4"
+          value: '4'
         - name: WALKTHROUGH_LOCATIONS
-          value: /opt/user-walkthroughs
+          value: >-
+            https://github.com/RedHat-Middleware-Workshops/workshop-camel3?walkthroughsFolder=/docs/labs
       endpoints:
         - name: tutorial
           exposure: public
@@ -39,7 +40,7 @@ components:
       mountSources: true
       volumeMounts:
         - name: tutorial-storage
-          path: ${PROJECT_SOURCE}/docs/labs:/opt/user-walkthroughs
+          path: /opt/user-walkthroughs
 
   - name: m2
     volume:
