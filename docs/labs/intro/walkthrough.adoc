@@ -295,6 +295,19 @@ Using project "user1".
 Welcome! See 'oc help' to get started.
 ----
 +
+[subs=]
+```bash
+mv stage1.properties stage2.properties
+sed -i 's/stage1/stage2/g' g2s.yaml
+<br> 
+```
++
+[subs=]
+```bash
+mv stage1.properties stage2.properties
+sed -i 's/stage1/stage2/g' g2s.yaml<br> 
+```
++
 {blank}
 +
 image:images/002-terminal-cli-login.png[OC Login Command, role="integr8ly-img-responsive"]
