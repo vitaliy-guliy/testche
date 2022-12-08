@@ -38,12 +38,16 @@ components:
       memoryLimit: 512Mi
       mountSources: true
       volumeMounts:
-        - name: mongo-storage
+        - name: tutorial-storage
           path: ${PROJECT_SOURCE}/docs/labs:/opt/user-walkthroughs
 
   - name: m2
     volume:
       size: 1G
+
+  - name: tutorial-storage
+    volume:
+      size: 256Mi
 
 commands:
   - id: run-stub
