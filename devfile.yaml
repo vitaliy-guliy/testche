@@ -19,6 +19,28 @@ components:
         - name: m2
           path: /home/user/.m2
 
+  - name: webapp
+    container:
+      image: quay.io/redhatintegration/tutorial-web-app:latest
+      env:
+        - name: NODE_ENV
+          value: production
+        - name: THREESCALE_WILDCARD_DOMAIN
+          value: local.localdomain 
+        - name: OPENSHIFT_VERSION
+          value: "4"
+        - name: WALKTHROUGH_LOCATIONS
+          value: /opt/user-walkthroughs
+      endpoints:
+        - name: tutorial
+          exposure: public
+          targetPort: 5001
+      memoryLimit: 512Mi
+      mountSources: true
+      volumeMounts:
+        - name: mongo-storage
+          path: ${PROJECT_SOURCE}/docs/labs:/opt/user-walkthroughs
+
   - name: m2
     volume:
       size: 1G
@@ -38,7 +60,8 @@ commands:
 
   - id: send-request
     exec:
-      commandLine: "curl -H 'content-type: application/xml' -d '' http://localhost:9000/camel/subscriber/details"
+      commandLine: >-
+        curl -H 'content-type: application/json' -d '{"id":"123"}' http://localhost:8080/camel/subscriber/details
       component: tools
       workingDir: "${PROJECT_SOURCE}"
 
