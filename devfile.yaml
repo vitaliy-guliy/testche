@@ -36,7 +36,8 @@ components:
         - name: tutorial
           exposure: public
           targetPort: 5001
-          protocol: http
+          protocol: https
+          secure: true
       memoryLimit: 512Mi
       mountSources: true
       volumeMounts:
