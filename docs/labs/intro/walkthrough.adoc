@@ -2,6 +2,8 @@
 :user-password: openshift
 :namespace: {user-username}
 
+:experimental:
+
 // URLs
 :codeready-url: http://codeready-che.{openshift-app-host}/
 
@@ -9,328 +11,416 @@ ifdef::env-github[]
 endif::[]
 
 [id='lab-intro']
-= Lab Introduction
+= Camel Spring Boot - Simple Demo
 
-Start from here to familiarise yourself with the goals of this workshop and the scenario it is based on.
+Explore, build, test and deploy a Camel Spring Boot demo application using the Developer Sandbox and OpenShift Dev Spaces.
 
-_Apache Camel_ has taken a major evolution step with the release of version 3. It now reaches a wider audience and delivers significant automation on _Kubernetes_ environments to provide cloud native integration.
+This hands-on lab is based on the following blog article in Red Hat Developers:
 
-{empty} +
-
-
-[time=1]
-[id="workshop-progression"]
-== Workshop progression
-
-This workshop has been designed to start with the non-_Camel_ user in mind (the _Kubernetes_ user). All the initial data flows are delivered by the _Kubernetes_ user to showcase the no-code building blocks of _Camel_.
-
-As the student progresses with the labs, the scenario builds up in a more sophisticated architecture. Gradually, each new use case requires increased level of control, an area where the experienced _Camel_ developer is better suited.
-
-Every step you complete in the lab delivers value to the end platform under development. The further you go, the more fascinating power you uncover. It all starts, however, with the simplicity and easiness of no-code building blocks allowing anyone to define data flows from A to B.  
-
-image::images/workshop-progress-value.png[align="center", width=60%]
-
-
-
-[time=1]
-[id="workshop-user-profiles"]
-== User profiles
-
-The workshop has been designed to attend two different user profiles:
-
-
-* *The Kubernetes user* (no previous Camel experience) +
-The way this user consumes _Camel_ is by selecting _Kamelets_ (no-code building blocks) from a catalogue, and creating _Kamelet Bindings_ (concatenated _Kamelets_) in YAML definitions. The user creates local YAML files and then pushes them to _OpenShift_. The _Camel K_ operator automates the process of building, creating images and deploying the integrations.
-
-* *The Camel developer* +
-The traditional _Camel_ developer would typically, first, use his local environment for the inner loop development cycle. This strategy allows speeding up the process of prototyping and validating the code. Once the basics covered, it would follow the same deployment flow as the Kubernetes user.
-
-image::images/workshop-user-profiles.png[align="center", width=40%]
-
-
-
-[time=1]
-[id="workshop-goals"]
-== Workshop goals
-
-The list below summarises, among others, the main goals the workshop sets for you:
-
-* *Be the Kubernetes user* +
-Experience how to define and deploy integration flows connecting multiple _Kamelets_ (no-code building blocks) into _Kamelet Bindings_. +
-{empty} +
-
-* *Be the Camel developer* + 
-Experience first hand powerful _Camel_ tooling that accelerates the development process, and how the _Camel DSL_ (Domain Specific Language) can help you to implement advanced use cases. +
-{empty} +
-
-* *Extend/Amplify connectivity* +
-Learn how both personas (_Kubernetes/Camel_ users) can coordinate to maximise reusability by taking advantage of _Camel's_ open framework. +
-{empty} +
-
-* *Understand different levels of control* + 
-Familiarise yourself with simple/medium/advanced integrations use cases and how _Camel_ helps to accelerate their delivery. +
-{empty} +
-
-* *Evolve an architecture towards maturity* +
-Understand the justification behind certain design/architecture principles. Experience hands-on how evolving a platform in the right direction delivers a future proof architecture. +
-{empty} +
-
-* *Play with an exciting collaboration use case* + 
-Get to know the architecture of a collaboration platform, an increasingly needed capability, strategic for any industry/organisation, to connect internally and externally with colleagues and customers. +
-{empty} +
-
-=== Use of Camel
-
-In terms of _Camel_ constructs, the workshop covers the following building blocks, corresponding to `Entry` and `Integrator` levels (as per the diagram below):  
-
-- _Kamelet_ bindings
-- _Kamelets_
-- _Camel_ routes
-
-{blank}
-
-If you've never played with _Camel_ before, by the end of the workshop you're expected to be familiar with the constructs above listed.
-
-image::images/camel-abstraction-levels.png[align="center", width=80%]
-
-
-{empty} +
-
-[time=1]
-[id="scenario-intro"]
-== Scenario introduction
-
-As the internet evolves and technologies and trends emerge, so does the way people and organisations connect. Not only is digitalization transforming and automating processes, but also social changes and events are making an impact that is shaping how we interact.
-
-Email and SMSs started to replace direct phone conversations, and soon instant messaging platforms gained popularity over them. Today we have a big landscape of messaging platforms and often we feel divided on which one to use to communicate with family and friends.
-
-On the professional side, organisations mandate one common communication platform for all associates, but often, more than one survives, splitting work discussions between them.
-
-It becomes even more inconvenient when a sales department, for example, needs to communicate with customers. Telephone / email are old fashioned channels that are no longer effective. Sales agents try to stay in close contact with their customers via instant messaging platforms, and of course, each customer uses a different one.
-
-image::images/scenario-problem.png[align="center", width=40%]
-
-In the picture above, the _Service Agent_ needs to manage multiple and diverse platform accounts in order to stay in contact with different customers.
-
-The workshop proposes to build a platform that addresses this problem. It would integrate all platforms as one, and plug in additional services associated with those interactions. Additionally, the platform would provide new collaboration possibilities and new capabilities to help complying with government regulations, like data privacy and security.
-
-The picture below illustrates a system that integrates all platforms and allows communication exchanges between different members from unrelated entities
-
-image::images/scenario-message-hub.png[align="center", width=40%]
-
-Under such solution, The _Service Agent_ would be abstracted from all external platforms and would simply be another member of the unified platform. 
+Assuming you have followed the article's instructions, you should be all ready to get hands-on with Camel Spring Boot in the OpenShift Dev Spaces workspace.
 
 {empty} +
 
 
 [time=2]
-[id='dev-environment']
-== Development environment
+[id="explore-code"]
+== Explore the source code
 
-The following instructions introduce you to your development environment, and the cluster where you'll deploy your applications throughout this workshop.
+For illustration purposes the picture below shows what the integration end to end flow looks like.
 
-=== Overview
+image::images/00-demo-end2end.png[align="center", width=90%]
 
-Built on the open Eclipse Che project, Red Hat OpenShift Dev Spaces uses Kubernetes and containers to provide any member of the development or IT team with a consistent, secure, and zero-configuration development environment. The experience is as fast and familiar as an integrated development environment on your laptop.
-
-OpenShift Dev Spaces is included with your OpenShift subscription and is available in the Operator Hub. It provides development teams a faster and more reliable foundation on which to work, and it gives operations centralized control and peace of mind.
+The Camel route definition would define the entire end to end processing logic, which you can find in your project explorer here:
 
 
-// [type=walkthroughResource,serviceName=codeready]
-// .Red Hat OpenShift Dev Spaces
-// ****
-// * link:{codeready-url}[Console, window="_blank", , id="resources-codeready-url"]
-// ****
-// [type=walkthroughResource]
-// .Red Hat OpenShift Developer Console
-// ****
-// * link:{openshift-host}/topology/ns/{namespace}[Topology View, window="_blank"]
-// ****
-// [type=walkthroughResource]
-// .Credentials
-// ****
-// * *username:* `{user-username}`
-// * *password:* `{user-password}`
-// ****
 
-[type=taskResource]
-.Red Hat OpenShift Dev Spaces
-****
-* link:{codeready-url}[Console, window="_blank", , id="resources-codeready-url"]
-****
-[type=taskResource]
-.Red Hat OpenShift Developer Console
-****
-* link:{openshift-host}/topology/ns/{namespace}[Topology View, window="_blank"]
-****
-[type=taskResource]
-.Credentials
-****
-* *username:* `{user-username}`
-* *password:* `{user-password}`
-****
+[time=3]
+[id="terminal-stub"]
+== Run the stub in your terminal
 
-// :sectnums:
-{empty} +
-
-=== Accessing a Development Environment
-
-The development environment you use throughout the workshop is a web-hosted IDE known as link:https://developers.redhat.com/products/codeready-workspaces/overview[Red Hat OpenShift Dev Spaces, window="_blank"].
+The stub acts as the backend service that provides the XML data we need to fetch.
 
 {empty} +
 
-=== Login to OpenShift Dev Spaces
-
-To access your development environment:
-
-. Click the link:{codeready-url}[Console, window="_blank"] link under the *Red Hat OpenShift Dev Spaces* in the *Resources* panel on the right.
-. Log in using your username (`{user-username}`) and password (`{user-password}`)
+. Open your terminal
 +
-image:images/000-codeready-login.png[OpenShift Dev Spaces Login, role="integr8ly-img-responsive"]
+Make sure you make visible your terminal in the IDE. You can toggle it using the keyboard keys kbd:[Ctrl + `] or simply find the option from the menu system as per the picture below:
 +
-{empty} +
+image::images/01-toggle-terminal.png[align="left", width=40%]
+
+. Let's first run the stub
 +
-Once you are logged in, you'll see the CodeReady dashboard. This lists available workspaces.
+Copy and paste the following command in your terminal to place yourself in the stub's Camel Spring Boot project:
 +
-image::images/00-crw-dashboard.png[CodeReady Dashboard, role="integr8ly-img-responsive"]
-
-{empty} +
-
-=== Accessing your CodeReady Workspace
-
-This workshop provides a single, pre-configured workspace with plugins, source code, and even container images that have various Command-Line Interface (CLI) tools installed.
-
-{empty} +
-
-. Click the *Open* link for the workspace named `camel3-workshop-{user-username}`.
-+
-image::images/001-open-workspace.png[Open CodeReady Workspace, role="integr8ly-img-responsive"]
+[source, subs=]
+----
+cd stubs/end1<br>
+----
 +
 {blank}
 +
-This will start an instance of the workspace. Please wait a few moments while it downloads the required container images and configuration setup.
+Then, copy/paste the following command to start the stub in the terminal:
 +
-{empty} +
-
-. When the IDE appears:
+[source, subs=]
+----
+mvn -Dspring-boot.run.profiles=dev -s configuration/settings.xml<br>
+----
++
+{blank}
 +
 --
-* ensure you click `Yes, I trust` when the following message shows on the bottom right corner:
+* After _Maven_ downloads all the dependencies, you should see in your terminal logs the stub has started:
 +
-image::images/crw-trust-project.png[Trust Workshop Project, role="integr8ly-img-responsive", align="left", width=50%]
+image::images/02-stub-terminal-logs.png[align="left", width=100%]
 +
-{blank}
-+
-* Ensure you close the following options:
-+
-image::images/crw-close-options.png[Close other suggestions, role="integr8ly-img-responsive", align="left", width=50%]
+NOTE: Two notifications pop up informing about new listening ports. You can ignore the messages, they will automatically close after a few seconds.
 --
 +
 {empty} +
-
-. Close the welcome and README tab and the other open dialogs by clicking the *x*, then click on the Explorer (file) icon on the left side bar. The Explorer shows you the *MessageHub* folder with the required projects and lab files.
 +
-image::images/01-crw-welcome.png[CodeReady Welcome screen, role="integr8ly-img-responsive"]
+Now, test your stub from a new terminal. From your terminal's top right corner, choose the Split option, as shown below:
 +
-[NOTE]
-====
-This IDE is based on *CodeReady*, which is in turn is based on Microsoft VSCode. It will look familiar if you have already used it.
-
-You can close the _Problems_ and _Output_ views to clear space.
-====
-
-=== Accessing a Terminal
-
-During the workshop you will use the OpenShift CLI along with other developer-focused Command Line Interface (CLI) tools.
-These CLI tools are available directly inside your Workspace via tools containers.
-
-Access the *tools* container(s) like so:
-
-CAUTION: There are *TWO* terminal options available, make sure you select the one indicated in the picture below (*number 2 in red*).
-
-. Click on the _My Workspace_ (cube) icon on the right side panel.
-. Click on *User Runtimes* -> *tools* -> *>_ New terminal*.
+image::images/03-terminal-split.png[align="left", width=40%]
 +
 {blank}
 +
-image::images/02-crw-tools-container.png[Open Terminal, role="integr8ly-img-responsive"]
-
-{blank}
-
-A terminal window should be open at the bottom of the screen. This terminal is attached to the running CodeReady container and is also running on OpenShift. This is the place where you will issue most of the commands from this workshop.
-
-{empty} +
-
-=== Login into OpenShift using the CLI
-
-. Open a terminal using the instructions from the previous section.
-. In the terminal tab, issue the following command:
+Copy/paste the following cURL command to obtain a response from the stub:
 +
-[source,bash,subs="attributes+"]
+[source, subs=]
 ----
-oc login -u {user-username} -p {user-password} https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT --insecure-skip-tls-verify=true
+curl -s \
+-H "content-type: application/xml" \
+-d '' \
+http://localhost:9000/camel/subscriber/details \
+| bat -pP -lxml<br>
 ----
++
+NOTE: The command also includes a pipe to colorise the XML output for better reading.
 +
 {blank}
 +
-[TIP]
-====
-* To copy the content of snippets of code, as above, click on the copy button on the right side of snippet box.
-* Perform the same copy action for other snippets along the workshop to complete the exercises.
-====
-. You should see something like the following (the project names may be different):
+The invocation should return an XML payload similar to:
 +
-[subs="attributes+"]
 ----
-Login successful.
-
-You have access to the following projects and can switch between them with 'oc project <projectname>':
-
-  * {user-username}
-    {user-username}-che
-    {user-username}-shared-475f
-    {user-username}-workshop-a14c
-
-Using project "user1".
-Welcome! See 'oc help' to get started.
-----
-+
-[subs=]
-```bash
-mv stage1.properties stage2.properties
-sed -i 's/stage1/stage2/g' g2s.yaml
-<br> 
-```
-+
-[subs=]
-```bash
-mv stage1.properties stage2.properties
-sed -i 's/stage1/stage2/g' g2s.yaml<br> 
-```
-+
-{blank}
-+
-image:images/002-terminal-cli-login.png[OC Login Command, role="integr8ly-img-responsive"]
-+
-{empty} +
-
-. Most of the work will be deploy to your own `{namespace}` project namespace. +
-Be sure to have it as a _working_ project by executing the following command:
-+
-[source,bash,subs="attributes+"]
-----
-oc project {namespace}
+<Individual>
+    <Name>Some</Name>
+    <Surname>One</Surname>
+    <Address>
+        <Number>1</Number>
+        <Street>Some Street</Street>
+        <City>Somewhere</City>
+        <PostCode>SOME C0D3</PostCode>
+        <Country>UK</Country>
+    </Address>
+</Individual>
 ----
 
 {empty} +
 
+[type=verification]
+Did you obtain the same XML message as above shown?
+
+[type=verificationSuccess]
+You've successfully tested the stub !!
+
+[type=verificationFail]
+Inspect in stub logs to investigate possible failure causes.
+
+
+
+[time=2]
+[id="terminal-service"]
+== Run the service in your terminal
+
+The main _Camel_ service exposes a JSON REST API and integrates with the XML backend service (the stub).
+
+{empty} +
+
+. Run the main service
++
+Copy and paste the following command in your terminal to place yourself in the main Camel Spring Boot project:
++
+[source, subs=]
+----
+cd /projects/testche/level1simple/<br>
+----
++
+{blank}
++
+Then, copy/paste the following command to start the stub in the terminal:
++
+[source, subs=]
+----
+mvn -Dspring-boot.run.profiles=dev -s configuration/settings.xml<br>
+----
++
+{blank}
++
+--
+* Some more dependencies will be downloaded before the engine starts. When done, you should see logs of both systems in both terminals:
++
+image::images/04-terminal-system-logs.png[align="left", width=100%]
++
+NOTE: More notifications pop up about new listening ports. You can ignore the messages, they will automatically close after a few seconds.
+--
+
++
+{blank}
++
+Open a third terminal from where you can issue commands, from your terminal's top right corner, choose the Split option, as shown below:
++
+image::images/05-terminal-split-2.png[align="left", width=40%]
++
+{blank}
++
+Copy/paste the following cURL command to obtain a response from the stub:
++
+[source, subs=]
+----
+curl -s \
+-H "content-type: application/json" \
+-d '{"id":"123"}' \
+http://localhost:8080/camel/subscriber/details | jq<br>
+----
++
+NOTE: The command includes a pipe to parse the JSON response with JQuery, which nicely renders the returned JSON payload.
++
+{blank}
++
+The cURL command should return a JSON payload similar to:
++
+----
+{
+  "fullName": "Some One",
+  "addressLine1": "1 Some Street",
+  "addressLine2": "Somewhere SOME C0D3",
+  "addressLine3": "UK"
+}
+----
+
+{empty} +
 
 
 [type=verification]
-Did your terminal show you are connected to _OpenShift_ and pointing to the project `{namespace}`?
-
-[type=verificationFail]
-Make sure you follow the commands above. Try again.
+Did you obtain the same JSON response as the one shown above?
 
 [type=verificationSuccess]
-You are now ready to start working !
+You've successfully tested the main service !!
+
+[type=verificationFail]
+Inspect in stub logs to investigate possible failure causes.
+
+
+
+[time=3]
+[id="deploy-stub"]
+== Deploy and test the stub
+
+The stub acts as the backend service that provides the XML data we need to fetch.
+
+{empty} +
+
+. Stop both systems
++
+Make sure you stop both the stub and the main service by selecting each terminal and pressing the keys keys kbd:[Ctrl + c]. Your view of your terminals should look like:
++
+image::images/06-terminal-systems-stopped.png[align="left", width=100%]
++
+{empty} +
++
+. Deploy the stub
++
+Make sure your CLI `oc` client (OpenShift client) points to your Developer Sandbox namespace:
++
+[source, subs=]
+----
+oc projects -q | xargs oc project<br>
+----
++
+NOTE: The Developer Sandbox only ollows 1 namespace per user.
++
+The command above should output something similar to:
++
+----
+Now using project "bmesegue-dev" on server "https://172.30.0.1:443".
+----
++
+{empty} +
++
+You can now copy and paste the following command in your terminal to trigger the deployment:
++
+[source, subs=]
+----
+mvn oc:deploy -Popenshift -s configuration/settings.xml<br>
+----
++
+{blank}
++
+--
+* You'll see Maven fetching more dependencies and then interact with OpenShift to finalise the deployment of the stub.
++
+When done, if successful, going back to your browser's tab with your _OpenShift's_ developer topology view, you should see the new service up and ready when fully started, looking similar to:
++
+image::images/07-topology-stub.png[align="left", width=20%]
+--
++
+{empty} +
++
+. Test the stub
++
+Copy/paste the following cURL command to obtain a response from the stub:
++
+[source, subs=]
+----
+curl -s \
+-H "content-type: application/xml" \
+-d '' \
+http://end1:8080/camel/subscriber/details \
+| bat -pP -lxml<br>
+----
++
+NOTE: The cURL command above now points to the newly deployed pod, with its service `end1` listening on port 8080.
++
+NOTE: The command also includes a pipe to colorise the XML output for better reading.
++
+{blank}
++
+The invocation should return an XML payload similar to:
++
+----
+<Individual>
+    <Name>Some</Name>
+    <Surname>One</Surname>
+    <Address>
+        <Number>1</Number>
+        <Street>Some Street</Street>
+        <City>Somewhere</City>
+        <PostCode>SOME C0D3</PostCode>
+        <Country>UK</Country>
+    </Address>
+</Individual>
+----
+
+{empty} +
+
+[type=verification]
+Did you obtain the same XML message as above shown?
+
+[type=verificationSuccess]
+You've successfully tested the stub deployed in the sandbox !!
+
+[type=verificationFail]
+Inspect in stub logs to investigate possible failure causes.
+
+
+[time=2]
+[id="deploy-service"]
+== Deploy and test the main service
+
+With the stub already deployed, we just need to deploy the service which will integrate with the stub running under the same namespace.
+
+{empty} +
+
+. Deploy the service
++
+Ensure you run the commands below from the terminal located in the path of your main service project.
++
+You can now copy and paste the following command in your terminal to trigger the deployment:
++
+[source, subs=]
+----
+mvn oc:deploy -Popenshift -s configuration/settings.xml<br>
+----
++
+{blank}
++
+--
+* Maven will interact with OpenShift to deploy the service.
++
+When done, if successful, going back to your browser's tab with your _OpenShift's_ developer topology view, you should see both services available, the main service and the stub, up and ready when fully started, looking similar to:
++
+image::images/08-topology-service-stub.png[align="left", width=50%]
+--
++
+{empty} +
++
+. Test the service
++
+Copy/paste the following cURL command to obtain a response from the stub:
++
+[source, subs=]
+----
+curl -s \
+-H "content-type: application/json" \
+-d '{"id":"123"}' \
+http://simple:8080/camel/subscriber/details | jq<br>
+----
++
+NOTE: The cURL command above now points to the newly deployed pod, with its service `simple` listening on port 8080.
++
+NOTE: The command also includes a pipe to parse and colorise the JSON output for better reading.
++
+{blank}
++
+The invocation should return an XML payload similar to:
++
+----
+{
+  "fullName": "Some One",
+  "addressLine1": "1 Some Street",
+  "addressLine2": "Somewhere SOME C0D3",
+  "addressLine3": "UK"
+}
+----
++
+{empty} +
++
+. Invoke an external service call
++
+Notice the previous cURL command uses an internal service URL, which is not directly accessible by external consumers. However, the deployment process automatically creates a route in OpenShift that exposes the service to external consumers.
++
+You can obtain the route details with the following command and use its URL from your favorite local HTTP client/tester, like podman or others.
++
+[source, subs=]
+----
+oc get route simple<br>
+----
++
+Copy/paste the following cURL command to obtain a response from the stub:
++
+[source, subs=]
+----
+curl -s \
+-H "content-type: application/json" \
+-d '{"id":"123"}' \
+http://simple:8080/camel/subscriber/details | jq<br>
+----
++
+NOTE: The cURL command above now points to the newly deployed pod, with its service `simple` listening on port 8080.
++
+NOTE: The command also includes a pipe to parse and colorise the JSON output for better reading.
++
+{blank}
++
+The invocation should return an XML payload similar to:
++
+----
+{
+  "fullName": "Some One",
+  "addressLine1": "1 Some Street",
+  "addressLine2": "Somewhere SOME C0D3",
+  "addressLine3": "UK"
+}
+----
+
+{empty} +
+
+[type=verification]
+Did you obtain the same JSON response as above shown?
+
+[type=verificationSuccess]
+You've successfully tested the simple service deployed in the sandbox !!
+
+[type=verificationFail]
+Inspect in stub logs to investigate possible failure causes.
+
