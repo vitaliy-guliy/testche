@@ -2,17 +2,41 @@ schemaVersion: 2.1.0
 metadata:
   name: camel-springboot-json2xml
 components:
+#   - name: tools
+#     container:
+#       image: quay.io/devfile/universal-developer-image:ubi8-0e189d9
+#       memoryLimit: 3Gi
+#       endpoints:
+#         - exposure: none
+#           name: debug
+#           protocol: tcp
+#           targetPort: 5005
+#         - exposure: public
+#           name: 8080-tcp
+#           protocol: http
+#           targetPort: 8080
+#       volumeMounts:
+#         - name: m2
+#           path: /home/user/.m2
+
+
   - name: tools
     container:
-      image: quay.io/devfile/universal-developer-image:ubi8-0e189d9
+      image: quay.io/redhatintegration/rhi-tools:latest
       memoryLimit: 3Gi
+      env:
+        - name: MAVEN_CONFIG
+          value: ""
+        - name: JAVA_OPTS
+          value: "-XX:MaxRAMPercentage=50.0 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10
+            -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90
+            -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom
+            -Duser.home=/home/user"
+        - name: MAVEN_OPTS
+          value: $(JAVA_OPTS)
       endpoints:
-        - exposure: none
-          name: debug
-          protocol: tcp
-          targetPort: 5005
         - exposure: public
-          name: 8080-tcp
+          name: 8080/tcp
           protocol: http
           targetPort: 8080
       volumeMounts:
