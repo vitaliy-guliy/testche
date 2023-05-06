@@ -22,7 +22,7 @@ components:
 
   - name: tools
     container:
-      image: quay.io/redhatintegration/rhi-tools:latest
+      image: quay.io/redhatintegration/rhi-tools:devspaces
       memoryLimit: 3Gi
       env:
         - name: MAVEN_CONFIG
