@@ -69,7 +69,7 @@ components:
           path: /opt/user-walkthroughs
 
 
-  - name: webapp
+  - name: webapp-catalog
     container:
       image: quay.io/redhatintegration/tutorial-web-app:latest
       env:
