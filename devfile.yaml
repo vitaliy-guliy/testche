@@ -83,7 +83,7 @@ components:
           value: '6001'
         - name: WALKTHROUGH_LOCATIONS
           value: >-
-            https://github.com/brunoNetId/testche?walkthroughsFolder=/docs/catalog
+            https://github.com/brunoNetId/testche?walkthroughsFolder=/docs/catalog&walkthroughsFolder=/docs/labs
       endpoints:
         - name: catalog
           exposure: public
