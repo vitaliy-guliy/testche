@@ -23,6 +23,8 @@ test URLs
 
 {devworkspace-namespace}
 
+{walkthrough_locations}
+
 end test URLs
 
 Explore, build, test and deploy a Camel Spring Boot demo application using the Developer Sandbox and OpenShift Dev Spaces.
