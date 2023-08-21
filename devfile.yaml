@@ -83,7 +83,7 @@ components:
           value: '6001'
         - name: WALKTHROUGH_LOCATIONS
           value: >-
-            https://github.com/brunoNetId/testche?walkthroughsFolder=/docs/catalog&walkthroughsFolder=/docs/labs,https://github.com/RedHat-Middleware-Workshops/workshop-camel3.git
+            https://github.com/brunoNetId/testche?walkthroughsFolder=/docs/catalog&walkthroughsFolder=/docs/labs,https://github.com/RedHat-Middleware-Workshops/workshop-camel3?walkthroughsFolder=/docs/labs
       endpoints:
         - name: catalog
           exposure: public
