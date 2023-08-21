@@ -79,13 +79,15 @@ components:
           value: local.localdomain
         - name: OPENSHIFT_VERSION
           value: '4'
+        - name: PORT
+          value: '6001'
         - name: WALKTHROUGH_LOCATIONS
           value: >-
             https://github.com/brunoNetId/testche?walkthroughsFolder=/docs/catalog
       endpoints:
         - name: catalog
           exposure: public
-          targetPort: 5000
+          targetPort: 6001
           protocol: http
           secure: true
       memoryLimit: 512Mi
