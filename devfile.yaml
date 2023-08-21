@@ -81,7 +81,7 @@ components:
           value: '4'
         - name: PORT
           value: '6001'
-        - name: OPENSHIFT_HOST
+        - name: CUSTOM_BRUNO
           value: 'temp'
         - name: WALKTHROUGH_LOCATIONS
           value: >-

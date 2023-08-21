@@ -23,6 +23,8 @@ test URLs
 
 {devworkspace-namespace}
 
+{custom_bruno}
+
 {walkthrough_locations}
 
 end test URLs
