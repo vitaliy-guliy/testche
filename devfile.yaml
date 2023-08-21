@@ -85,8 +85,8 @@ components:
       endpoints:
         - name: catalog
           exposure: public
-          targetPort: 5001
-          protocol: https
+          targetPort: 5000
+          protocol: http
           secure: true
       memoryLimit: 512Mi
       mountSources: true
