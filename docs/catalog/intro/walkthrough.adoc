@@ -19,6 +19,8 @@ test URLs
 
 {launcher-url}
 
+{openshift-host}
+
 end test URLs
 
 Explore, build, test and deploy a Camel Spring Boot demo application using the Developer Sandbox and OpenShift Dev Spaces.
