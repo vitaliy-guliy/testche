@@ -39,20 +39,20 @@ metadata:
 #         origin: https://github.com/brunoNetId/testche
 
 
-# starterProjects:
-#   - name: python-django
-#     subDir: mysite/
-#     git:
-#       remotes:
-#         origin: https://github.com/thepetk/python-django-ex
-
-
 starterProjects:
-  - name: lab-2
-    subDir: devspaces/lab2
+  - name: python-django
+    subDir: mysite/
     git:
       remotes:
-        origin: https://github.com/RedHat-Middleware-Workshops/edge-to-cloud-data-pipelines-workshop
+        origin: https://github.com/thepetk/python-django-ex
+
+
+# starterProjects:
+#   - name: lab-2
+#     subDir: devspaces/lab2
+#     git:
+#       remotes:
+#         origin: https://github.com/RedHat-Middleware-Workshops/edge-to-cloud-data-pipelines-workshop
   
 components:
 #   - name: tools
