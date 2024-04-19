@@ -7,14 +7,14 @@ metadata:
 # - name: demo-starter
 #   clonePath: stubs
 
-projects:
+# projects:
   # - name: stubs
-  - name: lab-2
+  # - name: lab-2
     # clonePath: my-project-resource/stubs
     # clonePath: stubs/end1
 
-    zip:
-      location: https://github.com/RedHat-Middleware-Workshops/edge-to-cloud-data-pipelines-workshop/raw/main/devspaces/lab2.zip
+    # zip:
+    #   location: https://github.com/RedHat-Middleware-Workshops/edge-to-cloud-data-pipelines-workshop/raw/main/devspaces/lab2.zip
 
     # git:
     #   remotes:
@@ -23,6 +23,18 @@ projects:
     #     revision: 1.1.0Final
     # clonePath: stubs
     # subDir: stubs
+
+# projects:
+#   - name: lab-2
+#     zip:
+#       location: https://github.com/RedHat-Middleware-Workshops/edge-to-cloud-data-pipelines-workshop/raw/main/devspaces/lab2.zip
+
+starterProjects:
+ - name: lab-2
+    subDir: stubs/
+    git:
+      remotes:
+        origin: https://github.com/brunoNetId/testche.git
   
 components:
 #   - name: tools
