@@ -9,7 +9,8 @@ metadata:
 
 projects:
   - name: my-project-resource
-    clonePath: my-project-resource/stubs
+    # clonePath: my-project-resource/stubs
+    clonePath: stubs
 
     git:
       remotes:
