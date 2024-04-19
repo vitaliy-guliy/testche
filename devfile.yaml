@@ -29,14 +29,22 @@ metadata:
 #     zip:
 #       location: https://github.com/RedHat-Middleware-Workshops/edge-to-cloud-data-pipelines-workshop/raw/main/devspaces/lab2.zip
 
-# starterProjects:
-starterProject:
- - name: lab-2
-    subDir: stubs/
+# # starterProjects:
+# starterProject:
+#  - name: lab-2
+#     subDir: stubs/
+#     git:
+#       remotes:
+#         # origin: https://github.com/brunoNetId/testche.git
+#         origin: https://github.com/brunoNetId/testche
+
+
+starterProjects:
+  - name: python-django
+    subDir: mysite/
     git:
       remotes:
-        # origin: https://github.com/brunoNetId/testche.git
-        origin: https://github.com/brunoNetId/testche
+        origin: https://github.com/thepetk/python-django-ex
   
 components:
 #   - name: tools
