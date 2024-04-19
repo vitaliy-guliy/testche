@@ -5,8 +5,8 @@ metadata:
 starterProjects:
 - name: demo-starter
   git:
-    # remotes:
-    #   origin: <git-repo>
+    remotes:
+      origin: https://github.com/brunoNetId/testche.git
     #   checkoutFrom:
     #     revision: 1.1.0Final
     
