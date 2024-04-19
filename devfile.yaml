@@ -6,12 +6,12 @@ metadata:
 starterProjects:
 - name: demo-starter
   git:
-    remotes:
-      origin: https://github.com/brunoNetId/testche.git
+    # remotes:
+    #   origin: https://github.com/brunoNetId/testche.git
     #   checkoutFrom:
     #     revision: 1.1.0Final
-    
-    subDir: stubs
+    clonePath: stubs
+    # subDir: stubs
   
 components:
 #   - name: tools
