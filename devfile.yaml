@@ -29,12 +29,14 @@ metadata:
 #     zip:
 #       location: https://github.com/RedHat-Middleware-Workshops/edge-to-cloud-data-pipelines-workshop/raw/main/devspaces/lab2.zip
 
-starterProjects:
+# starterProjects:
+starterProject:
  - name: lab-2
     subDir: stubs/
     git:
       remotes:
-        origin: https://github.com/brunoNetId/testche.git
+        # origin: https://github.com/brunoNetId/testche.git
+        origin: https://github.com/brunoNetId/testche
   
 components:
 #   - name: tools
