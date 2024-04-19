@@ -11,9 +11,9 @@ projects:
   - name: my-project-resource
     clonePath: stubs
 
-  # git:
-    # remotes:
-    #   origin: https://github.com/brunoNetId/testche.git
+    git:
+      remotes:
+        origin: https://github.com/brunoNetId/testche.git
     #   checkoutFrom:
     #     revision: 1.1.0Final
     # clonePath: stubs
