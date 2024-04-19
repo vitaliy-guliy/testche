@@ -1,6 +1,17 @@
 schemaVersion: 2.1.0
 metadata:
   name: camel-springboot-json2xml
+
+starterProjects:
+- name: demo-starter
+  git:
+    # remotes:
+    #   origin: <git-repo>
+    #   checkoutFrom:
+    #     revision: 1.1.0Final
+    
+    subDir: stubs
+  
 components:
 #   - name: tools
 #     container:
