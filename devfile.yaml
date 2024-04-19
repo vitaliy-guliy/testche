@@ -39,12 +39,20 @@ metadata:
 #         origin: https://github.com/brunoNetId/testche
 
 
+# starterProjects:
+#   - name: python-django
+#     subDir: mysite/
+#     git:
+#       remotes:
+#         origin: https://github.com/thepetk/python-django-ex
+
+
 starterProjects:
   - name: python-django
-    subDir: mysite/
+    subDir: stubs/
     git:
       remotes:
-        origin: https://github.com/thepetk/python-django-ex
+        origin: https://github.com/brunoNetId/testche
   
 components:
 #   - name: tools
