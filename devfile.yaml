@@ -47,6 +47,7 @@ metadata:
 #         origin: https://github.com/thepetk/python-django-ex
 
 
+
 starterProjects:
   - name: lab-2
     subDir: devspaces/lab2
