@@ -11,11 +11,14 @@ projects:
   # - name: stubs
   - name: my-project
     # clonePath: my-project-resource/stubs
-    clonePath: stubs/end1
+    # clonePath: stubs/end1
 
-    git:
-      remotes:
-        origin: https://github.com/brunoNetId/testche.git
+    zip:
+      location: https://github.com/brunoNetId/testche/raw/main/test/lab.zip
+
+    # git:
+    #   remotes:
+    #     origin: https://github.com/brunoNetId/testche.git
     #   checkoutFrom:
     #     revision: 1.1.0Final
     # clonePath: stubs
