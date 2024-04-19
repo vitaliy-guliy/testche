@@ -5,12 +5,14 @@ metadata:
 
 projects:
 - name: demo-starter
-  git:
+  clonePath: stubs
+
+  # git:
     # remotes:
     #   origin: https://github.com/brunoNetId/testche.git
     #   checkoutFrom:
     #     revision: 1.1.0Final
-    clonePath: stubs
+    # clonePath: stubs
     # subDir: stubs
   
 components:
