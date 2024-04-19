@@ -8,9 +8,10 @@ metadata:
 #   clonePath: stubs
 
 projects:
-  - name: stubs
+  # - name: stubs
+  - name: my-project
     # clonePath: my-project-resource/stubs
-    clonePath: stubs
+    clonePath: stubs/end1
 
     git:
       remotes:
