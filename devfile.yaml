@@ -9,7 +9,7 @@ metadata:
 
 projects:
   - name: my-project-resource
-    # clonePath: maven/src/github.com/brunoNetId/testche/stubs
+    clonePath: /projects/my-project-resource/stubs
 
     git:
       remotes:
