@@ -48,11 +48,11 @@ metadata:
 
 
 starterProjects:
-  - name: python-django
-    subDir: stubs/
+  - name: lab-2
+    subDir: devspaces/lab2
     git:
       remotes:
-        origin: https://github.com/brunoNetId/testche
+        origin: https://github.com/RedHat-Middleware-Workshops/edge-to-cloud-data-pipelines-workshop
   
 components:
 #   - name: tools
