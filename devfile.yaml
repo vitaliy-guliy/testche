@@ -8,7 +8,7 @@ metadata:
 #   clonePath: stubs
 
 projects:
-  - name: my-project-resource
+  - name: stubs
     # clonePath: my-project-resource/stubs
     clonePath: stubs
 
