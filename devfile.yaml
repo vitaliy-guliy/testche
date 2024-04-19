@@ -3,9 +3,13 @@ schemaVersion: 2.2.0
 metadata:
   name: camel-springboot-json2xml
 
-starterProject:
-- name: demo-starter
-  clonePath: stubs
+# starterProject:
+# - name: demo-starter
+#   clonePath: stubs
+
+projects:
+  - name: my-project-resource
+    clonePath: stubs
 
   # git:
     # remotes:
