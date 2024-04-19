@@ -9,12 +9,12 @@ metadata:
 
 projects:
   # - name: stubs
-  - name: my-project
+  - name: lab-2
     # clonePath: my-project-resource/stubs
     # clonePath: stubs/end1
 
     zip:
-      location: https://github.com/brunoNetId/testche/raw/main/test/lab.zip
+      location: https://github.com/RedHat-Middleware-Workshops/edge-to-cloud-data-pipelines-workshop/raw/main/devspaces/lab2.zip
 
     # git:
     #   remotes:
