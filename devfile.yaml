@@ -88,6 +88,8 @@ components:
             -Duser.home=/home/user"
         - name: MAVEN_OPTS
           value: $(JAVA_OPTS)
+        - name: VSCODE_DEFAULT_WORKSPACE
+          value: "/"
       endpoints:
         - exposure: public
           name: 8080-tcp
