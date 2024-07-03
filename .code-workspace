@@ -3,11 +3,7 @@
         {
             "name": "testche",
             "path": "/projects/testche"
-        },
-        {
-            "name": "lab-2",
-            "path": "/projects/lab-2"
-        },
+        
     ],
     "settings": {
         "editor.cursorBlinking": "expand",
