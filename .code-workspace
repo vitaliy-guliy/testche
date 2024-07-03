@@ -13,7 +13,8 @@
         "editor.cursorBlinking": "expand",
         "editor.cursorStyle": "block",
         "workbench.colorTheme": "Kimbie Dark",
-        "workbench.iconTheme": "dot"
+        "workbench.iconTheme": "dot",
+        "workbench.startupEditor": "readme"
     },
     "extensions": {
         "recommendations": [
