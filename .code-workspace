@@ -2,11 +2,11 @@
     "folders": [
         {
             "name": "testche",
-            "path": "."
+            "path": "/projects/testche"
         },
         {
             "name": "lab-2",
-            "path": "."
+            "path": "/projects/lab-2"
         },
     ],
     "settings": {
