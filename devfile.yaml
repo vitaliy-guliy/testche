@@ -162,7 +162,17 @@ components:
     volume:
       size: 256Mi
 
+events:
+  postStart:
+    - test-command
+
 commands:
+  - id: test-command
+    exec:
+      commandLine: echo "123" > /projects/some_echo
+      component: tools
+      workingDir: "${PROJECTS_ROOT}"
+
   - id: run-stub
     exec:
       commandLine: JAVA_HOME=$JAVA_HOME_11 mvn -Dspring-boot.run.profiles=dev -s configuration/settings.xml
